@@ -13,10 +13,18 @@ function play(playerChoice, computerChoice) {
 }
 
 const choices = ['Rock', 'Paper', 'Scissors'];
+let outcome;
 
-let playerChoice = 0;
-let computerChoice = getComputerChoice();
+let playerChoiceText = prompt("Rock, Paper, Scissors?");
+let playerChoiceTextFormatted = playerChoiceText ? playerChoiceText.charAt(0).toUpperCase() + playerChoiceText.slice(1).toLowerCase() : "";
+let playerChoice = choices.includes(playerChoiceTextFormatted) ? choices.indexOf(playerChoiceTextFormatted) : null;
 
-let outcome = play(playerChoice, computerChoice);
+if (playerChoice !== null) {
+	let computerChoice = getComputerChoice();
+
+	outcome = play(playerChoice, computerChoice);
+} else {
+	outcome = 'No valid player choice made!';
+}
 
 console.log(outcome);
