@@ -6,7 +6,7 @@ function getComputerChoice() {
 }
 
 function getPlayerChoice() {
-	let playerChoiceText = prompt("Rock, Paper, Scissors?");
+	let playerChoiceText = prompt(choices.join(', ') + '?');
 	let playerChoiceTextFormatted = playerChoiceText ? playerChoiceText.charAt(0).toUpperCase() + playerChoiceText.slice(1).toLowerCase() : "";
 	let playerChoice = choices.includes(playerChoiceTextFormatted) ? choices.indexOf(playerChoiceTextFormatted) : null;
 
