@@ -1,5 +1,15 @@
+const choices = ['Rock', 'Paper', 'Scissors'];
+
 function getComputerChoice() {
 	return Math.floor(Math.random() * 3);
+}
+
+function getPlayerChoice() {
+	let playerChoiceText = prompt("Rock, Paper, Scissors?");
+	let playerChoiceTextFormatted = playerChoiceText ? playerChoiceText.charAt(0).toUpperCase() + playerChoiceText.slice(1).toLowerCase() : "";
+	let playerChoice = choices.includes(playerChoiceTextFormatted) ? choices.indexOf(playerChoiceTextFormatted) : null;
+
+	return playerChoice;
 }
 
 function playRound(playerChoice, computerChoice) {
@@ -21,12 +31,8 @@ function playRound(playerChoice, computerChoice) {
 	return roundOutcome;
 }
 
-const choices = ['Rock', 'Paper', 'Scissors'];
 let roundOutcome;
-
-let playerChoiceText = prompt("Rock, Paper, Scissors?");
-let playerChoiceTextFormatted = playerChoiceText ? playerChoiceText.charAt(0).toUpperCase() + playerChoiceText.slice(1).toLowerCase() : "";
-let playerChoice = choices.includes(playerChoiceTextFormatted) ? choices.indexOf(playerChoiceTextFormatted) : null;
+let playerChoice = getPlayerChoice();
 
 if (playerChoice !== null) {
 	let computerChoice = getComputerChoice();
