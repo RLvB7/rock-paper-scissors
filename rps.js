@@ -41,7 +41,9 @@ function game() {
 		let roundOutcome;
 		let playerChoice = getPlayerChoice();
 
-		if (playerChoice !== null) {
+		if (playerChoice === null) {
+			console.log('No valid player choice made!');
+		} else {
 			let computerChoice = getComputerChoice();
 
 			roundOutcome = playRound(roundNumber, playerChoice, computerChoice);
@@ -60,30 +62,33 @@ function game() {
 			}
 
 			roundNumber++;
-		} else {
-			console.log('No valid player choice made!');
 		}
 	}
 
 	let totalRoundsText = `${totalRounds} round${totalRounds == 1 ? '' : 's'}`
-	let gameOutcomeText;
+	let winnerText;
 	let winningScore;
 	let losingScore;
+	let gameOutcomeText;
 
 	if (playerScore === computerScore) {
-		gameOutcomeText = 'the game is a tie';
+		winnerText = 'the game is a tie';
 		winningScore = losingScore = playerScore;
 	} else if (playerScore > computerScore) {
-		gameOutcomeText = 'you win';
+		winnerText = 'you win';
 		winningScore = playerScore;
 		losingScore = computerScore;
 	} else {
-		gameOutcomeText = 'the computer wins';
+		winnerText = 'the computer wins';
 		winningScore = computerScore;
 		losingScore = playerScore;
 	}
 
-	console.log(`After ${totalRoundsText}, ${gameOutcomeText} with ${winningScore} against ${losingScore}!`);
+	gameOutcomeText = `After ${totalRoundsText}, ${winnerText} with ${winningScore} against ${losingScore}!`;
+
+	return gameOutcomeText;
 }
 
-game();
+let outcome = game();
+
+console.log(outcome);
