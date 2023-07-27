@@ -2,7 +2,7 @@ function getComputerChoice() {
 	return Math.floor(Math.random() * 3);
 }
 
-function play(playerChoice, computerChoice) {
+function playRound(playerChoice, computerChoice) {
 	if (playerChoice === computerChoice) {
 		return `Draw! ${choices[playerChoice]} ties with ${choices[computerChoice]}!`;
 	} else if (playerChoice === computerChoice - 1 || playerChoice === computerChoice + 2) {
@@ -22,7 +22,7 @@ let playerChoice = choices.includes(playerChoiceTextFormatted) ? choices.indexOf
 if (playerChoice !== null) {
 	let computerChoice = getComputerChoice();
 
-	outcome = play(playerChoice, computerChoice);
+	outcome = playRound(playerChoice, computerChoice);
 } else {
 	outcome = 'No valid player choice made!';
 }
