@@ -3,17 +3,26 @@ function getComputerChoice() {
 }
 
 function playRound(playerChoice, computerChoice) {
+	let roundOutcome = 0;
+	let roundOutcomeText;
+
 	if (playerChoice === computerChoice) {
-		return `Draw! ${choices[playerChoice]} ties with ${choices[computerChoice]}!`;
+		roundOutcomeText = `Draw! ${choices[playerChoice]} ties with ${choices[computerChoice]}!`;
 	} else if (playerChoice === computerChoice - 1 || playerChoice === computerChoice + 2) {
-		return `You lose! ${choices[computerChoice]} beats ${choices[playerChoice]}!`;
+		roundOutcome = -1;
+		roundOutcomeText = `You lose! ${choices[computerChoice]} beats ${choices[playerChoice]}!`;
 	} else {
-		return `You win! ${choices[playerChoice]} beats ${choices[computerChoice]}!`;
+		roundOutcome = 1;
+		roundOutcomeText = `You win! ${choices[playerChoice]} beats ${choices[computerChoice]}!`;
 	}
+
+	console.log(roundOutcomeText);
+
+	return roundOutcome;
 }
 
 const choices = ['Rock', 'Paper', 'Scissors'];
-let outcome;
+let roundOutcome;
 
 let playerChoiceText = prompt("Rock, Paper, Scissors?");
 let playerChoiceTextFormatted = playerChoiceText ? playerChoiceText.charAt(0).toUpperCase() + playerChoiceText.slice(1).toLowerCase() : "";
@@ -22,9 +31,9 @@ let playerChoice = choices.includes(playerChoiceTextFormatted) ? choices.indexOf
 if (playerChoice !== null) {
 	let computerChoice = getComputerChoice();
 
-	outcome = playRound(playerChoice, computerChoice);
+	roundOutcome = playRound(playerChoice, computerChoice);
 } else {
-	outcome = 'No valid player choice made!';
+	roundOutcome = 'No valid player choice made!';
 }
 
-console.log(outcome);
+console.log(roundOutcome);
