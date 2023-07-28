@@ -1,6 +1,7 @@
-// Store valid choices as array to enable localization and numerical logic
+// Store values to enable customization, localization, and numerical logic
 const choices = ['Rock', 'Paper', 'Scissors'];
 const totalRounds = 5;
+const totalRoundsText = `${totalRounds} round${totalRounds == 1 ? '' : 's'}`;
 
 function getComputerChoice() {
 	// Get a random number between 0 and 2, representing the computer's choice
@@ -80,7 +81,6 @@ function game() {
 		}
 	}
 
-	let totalRoundsText = `${totalRounds} round${totalRounds == 1 ? '' : 's'}`;
 	let winnerText;
 	let winningScore;
 	let losingScore;
