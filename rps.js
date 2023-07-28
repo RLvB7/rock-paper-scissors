@@ -1,16 +1,22 @@
+// Store valid choices as array to enable localization and numerical logic
 const choices = ['Rock', 'Paper', 'Scissors'];
 const totalRounds = 5;
 
 function getComputerChoice() {
-	return Math.floor(Math.random() * 3);
+	// Get a random number between 0 and 2, representing the computer's choice
+	let computerChoice = Math.floor(Math.random() * 3);
+
+	return computerChoice;
 }
 
 function getPlayerChoice() {
 	let playerChoiceText = prompt(choices.join(', ') + '?');
+
 	let playerChoiceTextFormatted = playerChoiceText ?
 		playerChoiceText.charAt(0).toUpperCase() +
 		playerChoiceText.slice(1).toLowerCase() :
-		"";
+		'';
+
 	let playerChoice = choices.includes(playerChoiceTextFormatted) ?
 		choices.indexOf(playerChoiceTextFormatted) : null;
 
@@ -78,7 +84,7 @@ function game() {
 	let winnerText;
 	let winningScore;
 	let losingScore;
-	
+
 	if (playerScore === computerScore) {
 		winnerText = 'the game is a tie';
 		winningScore = losingScore = playerScore;
