@@ -7,8 +7,12 @@ function getComputerChoice() {
 
 function getPlayerChoice() {
 	let playerChoiceText = prompt(choices.join(', ') + '?');
-	let playerChoiceTextFormatted = playerChoiceText ? playerChoiceText.charAt(0).toUpperCase() + playerChoiceText.slice(1).toLowerCase() : "";
-	let playerChoice = choices.includes(playerChoiceTextFormatted) ? choices.indexOf(playerChoiceTextFormatted) : null;
+	let playerChoiceTextFormatted = playerChoiceText ?
+		playerChoiceText.charAt(0).toUpperCase() +
+		playerChoiceText.slice(1).toLowerCase() :
+		"";
+	let playerChoice = choices.includes(playerChoiceTextFormatted) ?
+		choices.indexOf(playerChoiceTextFormatted) : null;
 
 	return playerChoice;
 }
@@ -18,13 +22,17 @@ function playRound(roundNumber, playerChoice, computerChoice) {
 	let roundOutcomeText;
 
 	if (playerChoice === computerChoice) {
-		roundOutcomeText = `Round ${roundNumber} is a draw! ${choices[playerChoice]} ties with ${choices[computerChoice]}!`;
-	} else if (playerChoice === computerChoice - 1 || playerChoice === computerChoice + 2) {
+		roundOutcomeText = `Round ${roundNumber} is a draw!` +
+			`${choices[playerChoice]} ties with ${choices[computerChoice]}!`;
+	} else if (playerChoice === computerChoice - 1 ||
+		playerChoice === computerChoice + 2) {
 		roundOutcome = -1;
-		roundOutcomeText = `You lose round ${roundNumber}! ${choices[computerChoice]} beats ${choices[playerChoice]}!`;
+		roundOutcomeText = `You lose round ${roundNumber}!` +
+			`${choices[computerChoice]} beats ${choices[playerChoice]}!`;
 	} else {
 		roundOutcome = 1;
-		roundOutcomeText = `You win round ${roundNumber}! ${choices[playerChoice]} beats ${choices[computerChoice]}!`;
+		roundOutcomeText = `You win round ${roundNumber}!` +
+			`${choices[playerChoice]} beats ${choices[computerChoice]}!`;
 	}
 
 	console.log(roundOutcomeText);
@@ -46,7 +54,8 @@ function game() {
 		} else {
 			let computerChoice = getComputerChoice();
 
-			roundOutcome = playRound(roundNumber, playerChoice, computerChoice);
+			roundOutcome = playRound(roundNumber,
+				playerChoice, computerChoice);
 
 			switch (roundOutcome) {
 				case -1:
@@ -65,12 +74,11 @@ function game() {
 		}
 	}
 
-	let totalRoundsText = `${totalRounds} round${totalRounds == 1 ? '' : 's'}`
+	let totalRoundsText = `${totalRounds} round${totalRounds == 1 ? '' : 's'}`;
 	let winnerText;
 	let winningScore;
 	let losingScore;
-	let gameOutcomeText;
-
+	
 	if (playerScore === computerScore) {
 		winnerText = 'the game is a tie';
 		winningScore = losingScore = playerScore;
@@ -84,7 +92,8 @@ function game() {
 		losingScore = playerScore;
 	}
 
-	gameOutcomeText = `After ${totalRoundsText}, ${winnerText} with ${winningScore} against ${losingScore}!`;
+	let gameOutcomeText = `After ${totalRoundsText},` +
+		`${winnerText} with ${winningScore} against ${losingScore}!`;
 
 	return gameOutcomeText;
 }
