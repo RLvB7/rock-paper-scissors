@@ -1,20 +1,54 @@
+body {
+	background-color: lightblue;
+}
+
 #container {
 	width: 100%;
 	max-width: 500px;
 }
 
-#buttonContainer {
+#buttonContainer,
+#statusContainer {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
 }
 
-#buttonContainer button {
+#buttonContainer button,
+#statusContainer div {
 	flex: 1;
 }
 
-#buttonContainer p {
-	width: 100%;
+.statusCaption {
+	text-align: center;
 }
 
+.statusNumber {
+	font-size: xx-large;
+	text-align: center;
+	transition-duration: 1000ms;
+}
+
+.winning {
+	color: green;
+}
+
+.losing {
+	transition-duration: 1000ms;
+	color: red;
+}
+
+.gameOver {
+	scale: 3;
+}
+
+.gameOutcomeText {
+	font-weight: bold;
+}
+
+@media(max-width: 195px) {
+	#roundNumberContainer {
+		order: 2;
+	}
+}
