@@ -1,7 +1,5 @@
 // Store values to enable customization, localization, and numerical logic
 const choices = ['Rock', 'Paper', 'Scissors'];
-const totalRounds = 5;
-const totalRoundsText = `${totalRounds} round${totalRounds == 1 ? '' : 's'}`;
 
 function getComputerChoice() {
 	// Get a random number between 0 and 2, representing the computer's choice
@@ -48,16 +46,18 @@ function playRound(roundNumber, playerChoice, computerChoice) {
 }
 
 function game() {
-	let roundNumber = 1;
+	let roundNumber = 0;
 	let playerScore = 0;
 	let computerScore = 0;
 
-	while (roundNumber <= totalRounds) {
+	while (playerScore < 5 && computerScore < 5) {
+		roundNumber++;
 		let roundOutcome;
 		let playerChoice = getPlayerChoice();
 
 		if (playerChoice === null) {
-			console.log('No valid player choice made!');
+			console.log('No valid player choice made! Exiting.');
+			return;
 		} else {
 			let computerChoice = getComputerChoice();
 
@@ -76,8 +76,6 @@ function game() {
 				default:
 					break;
 			}
-
-			roundNumber++;
 		}
 	}
 
@@ -97,6 +95,8 @@ function game() {
 		winningScore = computerScore;
 		losingScore = playerScore;
 	}
+
+	let totalRoundsText = `${roundNumber} round${roundNumber == 1 ? '' : 's'}`;
 
 	let gameOutcomeText = `After ${totalRoundsText},` +
 		`${winnerText} with ${winningScore} against ${losingScore}!`;
