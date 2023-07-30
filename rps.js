@@ -4,11 +4,21 @@ const choices = ['Rock', 'Paper', 'Scissors'];
 const gameLog = document.getElementById('gameLog');
 const buttonContainer = document.getElementById('buttonContainer');
 const resetButton = document.createElement('button');
+
+resetButton.textContent = 'Reset';
+resetButton.addEventListener('click', () => setup());
+
 let roundNumber = 1;
 let playerScore = 0;
 let computerScore = 0;
 
 function setup() {
+	roundNumber = 1;
+	playerScore = 0;
+	computerScore = 0;
+	buttonContainer.replaceChildren();
+	gameLog.replaceChildren();
+	
 	choices.forEach(choice => {
 		let button = document.createElement('button');
 		button.textContent = choice;
@@ -16,8 +26,6 @@ function setup() {
 		buttonContainer.appendChild(button);
 	});
 
-	resetButton.textContent = 'Reset';
-	resetButton.addEventListener('click', () => resetGame());
 }
 
 function gameLogEntry(entry) {
@@ -73,16 +81,9 @@ function playRound(playerChoice) {
 
 		gameLogEntry(gameOutcomeText);
 
+		buttonContainer.replaceChildren();
 		buttonContainer.appendChild(resetButton);
 	}
-}
-
-function resetGame() {
-	roundNumber = 1;
-	playerScore = 0;
-	computerScore = 0;
-	gameLog.replaceChildren();
-	buttonContainer.removeChild(resetButton);
 }
 
 setup();
