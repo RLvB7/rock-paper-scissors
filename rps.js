@@ -1,5 +1,17 @@
 // Store values to enable customization, localization, and numerical logic
 const choices = ['Rock', 'Paper', 'Scissors'];
+const buttonContainer = document.getElementById('buttonContainer');
+const buttons = [];
+
+function setup() {
+	choices.forEach(choice => {
+		let button = document.createElement('button');
+		button.id = 'button' + choices.indexOf(choice);
+		button.textContent = choice;
+		buttonContainer.appendChild(button);
+		buttons.push(button);
+	});
+}
 
 function getComputerChoice() {
 	// Get a random number between 0 and 2, representing the computer's choice
@@ -103,6 +115,8 @@ function game() {
 
 	return gameOutcomeText;
 }
+
+setup();
 
 let outcome = game();
 
