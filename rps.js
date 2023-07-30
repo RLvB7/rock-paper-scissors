@@ -3,7 +3,7 @@ const choices = ['Rock', 'Paper', 'Scissors'];
 
 const gameLog = document.getElementById('gameLog');
 const buttonContainer = document.getElementById('buttonContainer');
-const buttons = [];
+const resetButton = document.createElement('button');
 let roundNumber = 1;
 let playerScore = 0;
 let computerScore = 0;
@@ -14,8 +14,10 @@ function setup() {
 		button.textContent = choice;
 		button.addEventListener('click', () => playRound(choices.indexOf(choice)));
 		buttonContainer.appendChild(button);
-		buttons.push(button);
 	});
+
+	resetButton.textContent = 'Reset';
+	resetButton.addEventListener('click', () => resetGame());
 }
 
 function gameLogEntry(entry) {
@@ -40,7 +42,7 @@ function playRound(playerChoice) {
 			`${choices[playerChoice]} ties with ${choices[computerChoice]}!`;
 	} else if (playerChoice === computerChoice - 1 ||
 		playerChoice === computerChoice + 2) {
-			computerScore++;
+		computerScore++;
 		roundOutcomeText = `You lose round ${roundNumber}! ` +
 			`${choices[computerChoice]} beats ${choices[playerChoice]}!`;
 	} else {
@@ -63,14 +65,24 @@ function playRound(playerChoice) {
 			winningScore = computerScore;
 			losingScore = playerScore;
 		}
-	
+
 		let totalRoundsText = `${roundNumber} round${roundNumber == 1 ? '' : 's'}`;
-	
+
 		let gameOutcomeText = `After ${totalRoundsText}, ` +
 			`${winnerText} with ${winningScore} against ${losingScore}!`;
-	
+
 		gameLogEntry(gameOutcomeText);
+
+		buttonContainer.appendChild(resetButton);
 	}
+}
+
+function resetGame() {
+	roundNumber = 1;
+	playerScore = 0;
+	computerScore = 0;
+	gameLog.replaceChildren();
+	buttonContainer.removeChild(resetButton);
 }
 
 setup();
