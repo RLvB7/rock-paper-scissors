@@ -1,0 +1,10 @@
+#buttonContainer {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+#buttonContainer button {
+	flex: 1;
+}
