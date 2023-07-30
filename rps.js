@@ -27,16 +27,16 @@ function playRound(roundNumber, playerChoice, computerChoice) {
 	let roundOutcomeText;
 
 	if (playerChoice === computerChoice) {
-		roundOutcomeText = `Round ${roundNumber} is a draw!` +
+		roundOutcomeText = `Round ${roundNumber} is a draw! ` +
 			`${choices[playerChoice]} ties with ${choices[computerChoice]}!`;
 	} else if (playerChoice === computerChoice - 1 ||
 		playerChoice === computerChoice + 2) {
 		roundOutcome = -1;
-		roundOutcomeText = `You lose round ${roundNumber}!` +
+		roundOutcomeText = `You lose round ${roundNumber}! ` +
 			`${choices[computerChoice]} beats ${choices[playerChoice]}!`;
 	} else {
 		roundOutcome = 1;
-		roundOutcomeText = `You win round ${roundNumber}!` +
+		roundOutcomeText = `You win round ${roundNumber}! ` +
 			`${choices[playerChoice]} beats ${choices[computerChoice]}!`;
 	}
 
@@ -98,7 +98,7 @@ function game() {
 
 	let totalRoundsText = `${roundNumber} round${roundNumber == 1 ? '' : 's'}`;
 
-	let gameOutcomeText = `After ${totalRoundsText},` +
+	let gameOutcomeText = `After ${totalRoundsText}, ` +
 		`${winnerText} with ${winningScore} against ${losingScore}!`;
 
 	return gameOutcomeText;
