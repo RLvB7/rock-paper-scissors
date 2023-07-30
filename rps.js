@@ -1,16 +1,22 @@
 // Store values to enable customization, localization, and numerical logic
 const choices = ['Rock', 'Paper', 'Scissors'];
+const gameLog = document.getElementById('gameLog');
 const buttonContainer = document.getElementById('buttonContainer');
 const buttons = [];
 
 function setup() {
 	choices.forEach(choice => {
 		let button = document.createElement('button');
-		button.id = 'button' + choices.indexOf(choice);
 		button.textContent = choice;
 		buttonContainer.appendChild(button);
 		buttons.push(button);
 	});
+}
+
+function gameLogEntry(entry) {
+	let entryElement = document.createElement('p');
+	entryElement.textContent = entry;
+	gameLog.appendChild(entryElement);
 }
 
 function getComputerChoice() {
@@ -52,9 +58,7 @@ function playRound(roundNumber, playerChoice, computerChoice) {
 			`${choices[playerChoice]} beats ${choices[computerChoice]}!`;
 	}
 
-	console.log(roundOutcomeText);
-
-	return roundOutcome;
+	gameLogEntry(roundOutcomeText);
 }
 
 function game() {
@@ -68,7 +72,7 @@ function game() {
 		let playerChoice = getPlayerChoice();
 
 		if (playerChoice === null) {
-			console.log('No valid player choice made! Exiting.');
+			gameLogEntry('No valid player choice made! Game cancelled.');
 			return;
 		} else {
 			let computerChoice = getComputerChoice();
@@ -113,11 +117,9 @@ function game() {
 	let gameOutcomeText = `After ${totalRoundsText}, ` +
 		`${winnerText} with ${winningScore} against ${losingScore}!`;
 
-	return gameOutcomeText;
+	gameLogEntry(gameOutcomeText);
 }
 
 setup();
 
-let outcome = game();
-
-console.log(outcome);
+game();
