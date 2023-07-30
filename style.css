@@ -2,6 +2,10 @@ body {
 	background-color: lightblue;
 }
 
+button {
+	height: 75px
+}
+
 #container {
 	width: 100%;
 	max-width: 500px;
