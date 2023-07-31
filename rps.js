@@ -1,4 +1,3 @@
-// Store values to enable customization, localization, and numerical logic
 const choices = ['Rock', 'Paper', 'Scissors'];
 const scoreToWin = 5;
 
@@ -17,6 +16,7 @@ let roundNumber = 1;
 let gameOver = false;
 let playerScore = 0;
 let computerScore = 0;
+let playerHistory = [];
 
 function setup() {
 	roundNumber = 1;
@@ -26,6 +26,8 @@ function setup() {
 	buttonContainer.replaceChildren();
 	gameLog.replaceChildren();
 	updateStatus();
+	gameLogEntry('Choose your weapon!', true);
+	gameLogEntry(`First to reach a score of ${scoreToWin} wins the game!`, true);
 
 	choices.forEach(choice => {
 		let button = document.createElement('button');
@@ -33,23 +35,34 @@ function setup() {
 		button.addEventListener('click', () => playRound(choices.indexOf(choice)));
 		buttonContainer.appendChild(button);
 	});
-
 }
 
-function gameLogEntry(entry) {
+function gameLogEntry(entry, bold = false) {
 	let entryElement = document.createElement('p');
 	entryElement.textContent = entry;
 
-	if (gameOver) {
-		entryElement.classList.add('gameOutcomeText');
+	if (bold) {
+		entryElement.classList.add('bold');
 	}
 
 	gameLog.appendChild(entryElement);
 }
 
 function getComputerChoice() {
-	// Get a random number between 0 and 2, representing the computer's choice
-	let computerChoice = Math.floor(Math.random() * 3);
+	let computerChoice = -1;
+
+	// Computer choice is decided based on player's recent choices or at random	
+	if (playerHistory.length == 3) {
+		if (playerHistory[0] == playerHistory[1]) {
+			computerChoice = playerHistory[0] == (choices.length - 1) ? 0 : playerHistory[0] + 1;
+		} else if (playerHistory[1] == playerHistory[2]) {
+			computerChoice = playerHistory[1] == (choices.length - 1) ? 0 : playerHistory[1] + 1;
+		}
+	}
+
+	if (computerChoice < 0) {
+		computerChoice = Math.floor(Math.random() * choices.length);
+	}
 
 	return computerChoice;
 }
@@ -57,6 +70,11 @@ function getComputerChoice() {
 function playRound(playerChoice) {
 	let computerChoice = getComputerChoice();
 	let roundOutcomeText;
+
+	playerHistory.push(playerChoice);
+	if (playerHistory.length > 3) {
+		playerHistory.shift();
+	}
 
 	if (playerChoice === computerChoice) {
 		roundOutcomeText = `Round ${roundNumber} is a draw! ` +
@@ -94,7 +112,7 @@ function playRound(playerChoice) {
 		let gameOutcomeText = `After ${totalRoundsText}, ` +
 			`${winnerText} with ${winningScore} against ${losingScore}!`;
 
-		gameLogEntry(gameOutcomeText);
+		gameLogEntry(gameOutcomeText, true);
 
 		buttonContainer.replaceChildren();
 		buttonContainer.appendChild(resetButton);
