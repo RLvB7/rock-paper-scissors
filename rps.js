@@ -45,7 +45,7 @@ function gameLogEntry(entry, bold = false) {
 		entryElement.classList.add('bold');
 	}
 
-	gameLog.appendChild(entryElement);
+	gameLog.prepend(entryElement);
 }
 
 function getComputerChoice() {
