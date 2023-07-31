@@ -41,7 +41,6 @@ button {
 }
 
 .losing {
-	transition-duration: 1000ms;
 	color: red;
 }
 
