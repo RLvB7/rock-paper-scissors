@@ -3,6 +3,7 @@ const scoreToWin = 5;
 
 const gameLog = document.getElementById('gameLog');
 const buttonContainer = document.getElementById('buttonContainer');
+const resetContainer = document.getElementById('resetContainer');
 const resetButton = document.createElement('button');
 
 const statusPlayer = document.getElementById('playerScore');
@@ -23,18 +24,25 @@ function setup() {
 	gameOver = false;
 	playerScore = 0;
 	computerScore = 0;
-	buttonContainer.replaceChildren();
+
 	gameLog.replaceChildren();
+	resetContainer.replaceChildren();
 	updateStatus();
 	gameLogEntry('Choose your weapon!', true);
 	gameLogEntry(`First to reach a score of ${scoreToWin} wins the game!`, true);
 
-	choices.forEach(choice => {
-		let button = document.createElement('button');
-		button.textContent = choice;
-		button.addEventListener('click', () => playRound(choices.indexOf(choice)));
-		buttonContainer.appendChild(button);
-	});
+	if (buttonContainer.children.length === choices.length) {
+		for (let i = 0; i < choices.length; i++) {
+			buttonContainer.children[i].disabled = false;
+		}
+	} else {
+		choices.forEach(choice => {
+			let button = document.createElement('button');
+			button.textContent = choice;
+			button.addEventListener('click', () => playRound(choices.indexOf(choice)));
+			buttonContainer.appendChild(button);
+		});
+	}
 }
 
 function gameLogEntry(entry, bold = false) {
@@ -128,8 +136,11 @@ function playRound(playerChoice) {
 
 		gameLogEntry(gameOutcomeText, true);
 
-		buttonContainer.replaceChildren();
-		buttonContainer.appendChild(resetButton);
+		for (let i = 0; i < choices.length; i++) {
+			buttonContainer.children[i].disabled = true;
+		}
+
+		resetContainer.appendChild(resetButton);
 	}
 
 	updateStatus();

@@ -14,14 +14,17 @@ button {
 }
 
 #buttonContainer,
-#statusContainer {
+#statusContainer,
+#resetContainer {
 	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
 	gap: 10px;
+	margin: 10px 0;
 }
 
 #buttonContainer button,
+#resetContainer button,
 #statusContainer div {
 	flex: 1;
 }
