@@ -99,17 +99,23 @@ function playRound(playerChoice) {
 	}
 
 	if (playerChoice === computerChoice) {
-		roundOutcomeText = `Round ${roundNumber} is a draw! ` +
-			`${choices[playerChoice]} ties with ${choices[computerChoice]}!`;
+		roundOutcomeText =
+			`Your ${choices[playerChoice]} ties with ` +
+			`Computer's ${choices[computerChoice]}! ` +
+			`Round ${roundNumber} is a draw!`;
 	} else if (playerChoice === computerChoice - 1 ||
 		playerChoice === computerChoice + 2) {
 		computerScore++;
-		roundOutcomeText = `You lose round ${roundNumber}! ` +
-			`${choices[computerChoice]} beats ${choices[playerChoice]}!`;
+		roundOutcomeText =
+			`Computer's ${choices[computerChoice]} beats ` +
+			`your ${choices[playerChoice]}! ` +
+			`You lose round ${roundNumber}!`;
 	} else {
 		playerScore++;
-		roundOutcomeText = `You win round ${roundNumber}! ` +
-			`${choices[playerChoice]} beats ${choices[computerChoice]}!`;
+		roundOutcomeText =
+			`Your ${choices[playerChoice]} beats ` +
+			`Computer's ${choices[computerChoice]}! ` +
+			`You win round ${roundNumber}!`;
 	}
 
 	gameLogEntry(roundOutcomeText);
@@ -122,7 +128,7 @@ function playRound(playerChoice) {
 			winningScore = playerScore;
 			losingScore = computerScore;
 		} else {
-			winnerText = 'the computer wins';
+			winnerText = 'Computer wins';
 			winningScore = computerScore;
 			losingScore = playerScore;
 		}
