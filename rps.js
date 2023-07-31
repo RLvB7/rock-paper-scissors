@@ -46,6 +46,20 @@ function gameLogEntry(entry, bold = false) {
 	}
 
 	gameLog.prepend(entryElement);
+
+	if (gameLog.children.length > 2) {
+		let opacity = 1;
+
+		for (let i = 0; i < gameLog.children.length; i++) {
+			if (i == 6) {
+				gameLog.removeChild(gameLog.children[i]);
+				continue;
+			}
+			gameLog.children[i].style.opacity = opacity;
+			opacity -= 0.2;
+
+		}
+	}
 }
 
 function getComputerChoice() {
