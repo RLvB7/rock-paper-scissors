@@ -1,7 +1,8 @@
 body {
 	background-color: beige;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	width: 90vw;
+	box-sizing: border-box;
+	margin-right: 50px;
 }
 
 button {
