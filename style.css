@@ -1,16 +1,33 @@
 body {
-	background-color: lightblue;
+	background-color: beige;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	width: 90vw;
 }
 
 button {
-	height: 75px
+	height: 75px;
+	cursor: pointer;
+	background: royalblue;
+    color: white;
+    border-radius: 8px;
+    border: 1px solid royalblue;
+}
+
+.reset {
+	background: grey;
+    border: 1px solid #ddd;
+    color: white;
 }
 
 #container {
 	width: 100%;
 	max-width: 500px;
-	margin: 0 auto;
+	margin: 10px auto;
+	padding: 10px;
+	background-color: lightblue;
+    border-radius: 8px;
+    border: 1px solid royalblue;
+	box-shadow: 8px 10px 8px 0px #888888;
 }
 
 #buttonContainer,

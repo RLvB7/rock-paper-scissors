@@ -11,6 +11,7 @@ const statusRound = document.getElementById('roundNumber');
 const statusComputer = document.getElementById('computerScore');
 
 resetButton.textContent = 'Reset';
+resetButton.classList.add('reset');
 resetButton.addEventListener('click', () => setup());
 
 let roundNumber = 1;
@@ -59,7 +60,7 @@ function gameLogEntry(entry, bold = false) {
 		let opacity = 1;
 
 		for (let i = 0; i < gameLog.children.length; i++) {
-			if (i == 6) {
+			if (i == 5) {
 				gameLog.removeChild(gameLog.children[i]);
 				continue;
 			}
@@ -73,17 +74,61 @@ function gameLogEntry(entry, bold = false) {
 function getComputerChoice() {
 	let computerChoice = -1;
 
+	let ph = playerHistory;
+
 	// Computer choice is decided based on player's recent choices or at random	
-	if (playerHistory.length == 3) {
-		if (playerHistory[0] == playerHistory[1]) {
-			computerChoice = playerHistory[0] == (choices.length - 1) ? 0 : playerHistory[0] + 1;
-		} else if (playerHistory[1] == playerHistory[2]) {
-			computerChoice = playerHistory[1] == (choices.length - 1) ? 0 : playerHistory[1] + 1;
+	// rph = recent player history
+
+	if (computerChoice < 0 && playerHistory.length >= 5) {
+		rph = playerHistory.slice(playerHistory.length - 5);
+		if (rph[0] != rph[2] &&
+			rph[0] == rph[1] &&
+			rph[2] == rph[3]) {
+			computerChoice = rph[4] == 2 ? 0 : rph[4] + 1;	//00112
+		}
+	}
+
+	if (computerChoice < 0 && playerHistory.length >= 4) {
+		rph = playerHistory.slice(playerHistory.length - 4);
+		if (rph[0] != rph[1] &&
+			rph[0] != rph[2] &&
+			rph[0] != rph[3] &&
+			rph[1] != rph[2] &&
+			rph[1] == rph[3]) {
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//0121
+		} else if (
+			rph[0] != rph[1] &&
+			rph[0] != rph[3] &&
+			rph[1] != rph[2] &&
+			rph[1] != rph[3] &&
+			rph[2] != rph[3] &&
+			rph[0] == rph[2]) {
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//1210
+		} else if (
+			rph[0] != rph[2] &&
+			rph[0] == rph[1] &&
+			rph[2] == rph[3]) {
+			computerChoice = (3 - rph[0] - rph[2]) == 2 ? 0 : (3 - rph[0] - rph[2]) + 1;	//0011
+		}
+	}
+
+	if (computerChoice < 0 && playerHistory.length >= 3) {
+		rph = playerHistory.slice(playerHistory.length - 3);
+		if (rph[0] != rph[1] &&
+			rph[0] != rph[2]) {
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//012
+		}
+	}
+
+	if (computerChoice < 0 && playerHistory.length >= 2) {
+		rph = playerHistory.slice(playerHistory.length - 2);
+		if (rph[0] == rph[1]) {
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//00
 		}
 	}
 
 	if (computerChoice < 0) {
-		computerChoice = Math.floor(Math.random() * choices.length);
+		computerChoice = Math.floor(Math.random() * 3);
 	}
 
 	return computerChoice;
@@ -94,7 +139,7 @@ function playRound(playerChoice) {
 	let roundOutcomeText;
 
 	playerHistory.push(playerChoice);
-	if (playerHistory.length > 3) {
+	if (playerHistory.length > 5) {
 		playerHistory.shift();
 	}
 
