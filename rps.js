@@ -90,7 +90,12 @@ function getComputerChoice() {
 
 	if (computerChoice < 0 && playerHistory.length >= 4) {
 		rph = playerHistory.slice(playerHistory.length - 4);
-		if (rph[0] != rph[1] &&
+		if (
+			rph[0] != rph[1] &&
+			rph[0] == rph[2] &&
+			rph[1] == rph[3]) {
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//0101
+		} else if (rph[0] != rph[1] &&
 			rph[0] != rph[2] &&
 			rph[0] != rph[3] &&
 			rph[1] != rph[2] &&
@@ -108,7 +113,8 @@ function getComputerChoice() {
 			rph[0] != rph[2] &&
 			rph[0] == rph[1] &&
 			rph[2] == rph[3]) {
-			computerChoice = (3 - rph[0] - rph[2]) == 2 ? 0 : (3 - rph[0] - rph[2]) + 1;	//0011
+			computerChoice =
+				(3 - rph[0] - rph[2]) == 2 ? 0 : (3 - rph[0] - rph[2]) + 1;	//0011
 		}
 	}
 
