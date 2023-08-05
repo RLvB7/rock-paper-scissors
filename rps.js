@@ -20,6 +20,8 @@ let playerScore = 0;
 let computerScore = 0;
 let playerHistory = [];
 
+setup();
+
 function setup() {
 	roundNumber = 1;
 	gameOver = false;
@@ -226,5 +228,3 @@ function updateStatus() {
 		statusComputer.classList.add('gameOver');
 	}
 }
-
-setup();
