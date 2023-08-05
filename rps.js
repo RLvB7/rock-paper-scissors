@@ -207,13 +207,13 @@ function updateStatus() {
 	statusComputer.textContent = computerScore;
 
 	if (playerScore > computerScore) {
-		statusPlayer.classList.remove('winning', 'losing', 'gameOver');
-		statusComputer.classList.remove('winning', 'losing', 'gameOver');
+		statusPlayer.classList.remove('losing', 'gameOver');
+		statusComputer.classList.remove('winning', 'gameOver');
 		statusPlayer.classList.add('winning');
 		statusComputer.classList.add('losing');
 	} else if (computerScore > playerScore) {
-		statusPlayer.classList.remove('winning', 'losing', 'gameOver');
-		statusComputer.classList.remove('winning', 'losing', 'gameOver');
+		statusPlayer.classList.remove('winning', 'gameOver');
+		statusComputer.classList.remove('losing', 'gameOver');
 		statusPlayer.classList.add('losing');
 		statusComputer.classList.add('winning');
 	} else {
