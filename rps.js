@@ -74,8 +74,6 @@ function gameLogEntry(entry, bold = false) {
 function getComputerChoice() {
 	let computerChoice = -1;
 
-	let ph = playerHistory;
-
 	// Computer choice is decided based on player's recent choices or at random	
 	// rph = recent player history
 
