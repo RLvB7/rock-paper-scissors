@@ -84,7 +84,7 @@ function getComputerChoice() {
 		if (rph[0] != rph[2] &&
 			rph[0] == rph[1] &&
 			rph[2] == rph[3]) {
-			computerChoice = rph[4] == 2 ? 0 : rph[4] + 1;	//00112
+			computerChoice = rph[4] == 2 ? 0 : rph[4] + 1;	// e.g. 001122
 		}
 	}
 
@@ -94,13 +94,13 @@ function getComputerChoice() {
 			rph[0] != rph[1] &&
 			rph[0] == rph[2] &&
 			rph[1] == rph[3]) {
-			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//0101
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	// e.g. 01010
 		} else if (rph[0] != rph[1] &&
 			rph[0] != rph[2] &&
 			rph[0] != rph[3] &&
 			rph[1] != rph[2] &&
 			rph[1] == rph[3]) {
-			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//0121
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	// e.g. 01210
 		} else if (
 			rph[0] != rph[1] &&
 			rph[0] != rph[3] &&
@@ -108,13 +108,14 @@ function getComputerChoice() {
 			rph[1] != rph[3] &&
 			rph[2] != rph[3] &&
 			rph[0] == rph[2]) {
-			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//1210
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	// e.g. 12101
 		} else if (
 			rph[0] != rph[2] &&
 			rph[0] == rph[1] &&
 			rph[2] == rph[3]) {
 			computerChoice =
-				(3 - rph[0] - rph[2]) == 2 ? 0 : (3 - rph[0] - rph[2]) + 1;	//0011
+				(3 - rph[0] - rph[2]) == 2 ? 0 : (3 - rph[0] - rph[2]) + 1;
+				// e.g. 001122
 		}
 	}
 
@@ -122,14 +123,14 @@ function getComputerChoice() {
 		rph = playerHistory.slice(playerHistory.length - 3);
 		if (rph[0] != rph[1] &&
 			rph[0] != rph[2]) {
-			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//012
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	// e.g. 012012
 		}
 	}
 
 	if (computerChoice < 0 && playerHistory.length >= 2) {
 		rph = playerHistory.slice(playerHistory.length - 2);
 		if (rph[0] == rph[1]) {
-			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	//00
+			computerChoice = rph[0] == 2 ? 0 : rph[0] + 1;	// e.g. 000000
 		}
 	}
 
