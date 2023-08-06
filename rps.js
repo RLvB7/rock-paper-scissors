@@ -14,10 +14,10 @@ resetButton.textContent = 'Reset';
 resetButton.classList.add('reset');
 resetButton.addEventListener('click', () => setup());
 
-let roundNumber = 1;
-let gameOver = false;
-let playerScore = 0;
-let computerScore = 0;
+let roundNumber;
+let gameOver;
+let playerScore;
+let computerScore;
 let playerHistory = [];
 
 setup();
